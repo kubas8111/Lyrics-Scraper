@@ -3,6 +3,7 @@ SIM_SPEED = 2
 # G = 0.1
 G = 6.67430e-11
 c = 300000000
+EARTH_RADIUS = 6378
 
 # obiekt        radius(km)  dist. from the Sun (km) mass (10^21kg)
 # słońce        696000        0                     1 989 100 000
