@@ -16,3 +16,6 @@ class Planet(Orb):
             
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (settings.WIDTH_CENTER + self.position.x * settings.SCALE, settings.HEIGHT_CENTER + self.position.y * settings.SCALE), self.radius)
+
+    def set_father(self, father):
+        self.father = father

@@ -1,6 +1,6 @@
 import pygame
 import math
-from setup import planets
+from setup import orbs
 from objects import *
 import constants.settings as settings
 import constants.color as color
@@ -34,23 +34,23 @@ while running:
     # Updating physics in it's real time
     while accumulated_time >= settings.FIXED_DT:
         # --- ALL PHYSICS HERE ---
-        for planet in planets:
+        for orb in orbs:
             total_force = pygame.Vector2(0, 0) # zero force at begining
             
-            for other_planet in planets:
-                if planet != other_planet:
-                    force = planet.gravitational_force(other_planet)
+            for other_orb in orbs:
+                if orb != other_orb:
+                    force = orb.gravitational_force(other_orb)
                     total_force += force
                     
-            # All forces for one planet
-            planet.apply_force(total_force)
+            # All forces for one orb
+            orb.apply_force(total_force)
         
-        for planet in planets:
-            planet.update(settings.FIXED_DT)
-            planet.draw(screen)
+        for orb in orbs:
+            orb.update(settings.FIXED_DT)
+            orb.draw(screen)
             
-        # planet_stats.update(planets[1])
-        # planet_stats.draw(screen)
+        # orb_stats.update(orbs[1])
+        # orb_stats.draw(screen)
         
         accumulated_time -= settings.FIXED_DT
     
@@ -58,12 +58,12 @@ while running:
     
     # --- Statistics ---
     y_offset = 10
-    for i, planet in enumerate(planets):
-        mass_text = font.render(f"{planet.name} - Masa: {planet.mass:.5e}kg", True, color.WHITE)
-        position_text = font.render(f"{planet.name} - Pozycja: ({planet.position.x:.1f}, {planet.position.y:.1f})", True, color.WHITE)
-        velocity_text = font.render(f"{planet.name} - Prędkość: ({planet.velocity.x:.1f}, {planet.velocity.y:.1f})", True, color.WHITE)
+    for i, orb in enumerate(orbs):
+        mass_text = font.render(f"{orb.name} - Masa: {orb.mass:.5e}kg", True, color.WHITE)
+        position_text = font.render(f"{orb.name} - Pozycja: ({orb.position.x:.1f}, {orb.position.y:.1f})", True, color.WHITE)
+        velocity_text = font.render(f"{orb.name} - Prędkość: ({orb.velocity.x:.1f}, {orb.velocity.y:.1f})", True, color.WHITE)
         
-        # Display of mass, position and velocity, and then more space for another planet
+        # Display of mass, position and velocity, and then more space for another orb
         screen.blit(mass_text, (10, y_offset))
         y_offset += settings.FONT_SIZE + 5
         screen.blit(position_text, (10, y_offset))
@@ -71,8 +71,8 @@ while running:
         screen.blit(velocity_text, (10, y_offset))
         y_offset += settings.FONT_SIZE + 10
     
-    # min_max_text = font.render(f"Max_x: {planet_stats.max_x:.1f} Max_y: {planet_stats.max_y:.1f}", True, color.WHITE)
-    # min_max_text3 = font.render(f"Min_x: {planet_stats.min_x:.1f} Min_y: {planet_stats.min_y:.1f}", True, color.WHITE)
+    # min_max_text = font.render(f"Max_x: {orb_stats.max_x:.1f} Max_y: {orb_stats.max_y:.1f}", True, color.WHITE)
+    # min_max_text3 = font.render(f"Min_x: {orb_stats.min_x:.1f} Min_y: {orb_stats.min_y:.1f}", True, color.WHITE)
     
     # screen.blit(min_max_text, (10, y_offset))
     # y_offset += settings.FONT_SIZE + 5

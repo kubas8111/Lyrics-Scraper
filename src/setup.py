@@ -5,7 +5,15 @@ import constants.settings as settings
 import constants.color as color
 import constants.physics as ph
 
-planets = [
+world = World()
+
+World.add_orbs(Star("The Sun", pygame.Vector2(0, 0), pygame.Vector2(0, 0), 1.9891e30, ph.EARTH_RADIUS * settings.PLANET_SCALE * 1.5))
+
+sun = Star("The Sun", pygame.Vector2(0, 0), pygame.Vector2(0, 0), 1.9891e30, ph.EARTH_RADIUS * settings.PLANET_SCALE * 1.5)
+
+
+
+orbs = [
     # SUN
     Circle(pygame.Vector2(0, 0), pygame.Vector2(0, 0), ph.EARTH_RADIUS * settings.PLANET_SCALE * 1.5, color.YELLOW, 1.9891e30, "Sun"),
     # PLANETS
@@ -23,8 +31,8 @@ planets = [
 
 
 # added multiply by 60
-for planet in planets[1:]:
-    planet.apply_velocity(pygame.Vector2(0, math.sqrt(ph.G * planets[0].mass / planet.distance_to(planets[0]) * 60)))
-    print(math.sqrt(ph.G * planets[0].mass / planet.distance_to(planets[0])))
+for orb in orbs[1:]:
+    orb.apply_velocity(pygame.Vector2(0, math.sqrt(ph.G * orbs[0].mass / orb.distance_to(orbs[0]) * 60)))
+    print(math.sqrt(ph.G * orbs[0].mass / orb.distance_to(orbs[0])))
     
-planets[-1].apply_velocity(pygame.Vector2(0, math.sqrt(ph.G * planets[3].mass / planet.distance_to(planets[3]) * 60)))
+orbs[-1].apply_velocity(pygame.Vector2(0, math.sqrt(ph.G * orbs[3].mass / orb.distance_to(orbs[3]) * 60)))
