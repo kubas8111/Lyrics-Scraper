@@ -3,7 +3,7 @@
                 |
         -----------------
         |       |       |
-    Sun      Planet    Moon
+    Star      Planet    Moon
 
 
 Interface
