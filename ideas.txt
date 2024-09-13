@@ -1,0 +1,17 @@
+1.class structure
+    main class Orb
+                |
+        -----------------
+        |       |       |
+    Sun      Planet    Moon
+
+
+Interface
+-info on the left
+-info on the right
+
+
+2.navigation features
+
+3.statistics ideas
+
