@@ -1,11 +1,14 @@
 import pygame
 from constants import settings
 from .Orb import Orb
+from .Star import Star
 
 class Planet(Orb):
     def __init__(self, name, position, velocity, mass, radius, father = None, moons = None):
         super().__init__(name, position, velocity, mass, radius)
-        self.father = father
+        if isinstance(father, Star):
+            self.father = father
+            self.father.add_planets(self)
         if moons:
             self.moons = [moon for moon in moons]
         else:
