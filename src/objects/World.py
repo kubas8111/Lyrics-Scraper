@@ -13,15 +13,25 @@ class World():
                 continue
             
             if isinstance(orb, Star):
-                print(f"{orb} jest słońcem (Star)")
+                # print(f"{orb} jest słońcem (Star)")
                 self.orbs.append(orb)
                 self.add_orbs(orb.planets)
                 
             elif isinstance(orb, Planet):
-                print(f"{orb} jest planetą (Planet)")
+                # print(f"{orb} jest planetą (Planet)")
                 self.orbs.append(orb)
                 self.add_orbs(orb.moons)
                 
             else:
-                print(f"{orb} nie jest słońcem (Star), ale jest instancją klasy {type(orb).__name__}")
+                # print(f"{orb} jest księżycem (Moon)")
                 self.orbs.append(orb)
+                
+            print(f"Added {orb.name} to world")
+
+    def setup_forces(self):
+        for orb in self.orbs:
+            if isinstance(orb, Star):
+                for planet in orb.planets:
+                    planet.apply_father_velocity()
+                    for moon in planet.moons:
+                        moon.apply_father_velocity()
